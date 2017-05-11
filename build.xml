@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="TestNGTest" default="all" basedir=".">
+	<!-- Define <testng> task -->
+	<taskdef name="testng" classname="org.testng.TestNGAntTask">
+		<classpath>
+			<pathelement location="lib/testng-6.8.11.jar" />
+		</classpath>
+	</taskdef>
+	<property name="testdir" location="test-output" />
+	<property name="srcdir" location="src" />
+	<property name="libdir" location="lib" />
+	<property name="testreportdir" location="report" />
+	<property name="full-compile" value="true" />
+	<!-- 设置邮件是否发送 -->
+	<property name="mailrun" value="false" />
+	<!-- 邮件路径设置(将HTML发送出去) -->
+	<property name="mailstmp" value="mail.pansafe.com" />
+	<property name="mailuser" value="shijiujuan@pansafe.com" />
+	<property name="mailpassword" value="b8V78QB339" />
+	<property name="mailport" value="25" />
+	<property name="mailfrom" value="shijiujuan@pansafe.com" />
+	<property name="mailto" value="shijiujuan@pansafe.com" />
+	<property name="maillist" value="shijiujuan@pansafe.com" />
+
+
+	<!-- 邮件名字 -->
+	<property name="mailtitle" value="测试报告" />
+	<!-- 生成的报告的前缀 -->
+	<property name="ReportName" value="index" />
+	<path id="classpath.base" />
+	<path id="classpath.test">
+		<fileset dir="${libdir}">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${testdir}" />
+		<pathelement location="${srcdir}" />
+		<path refid="classpath.base" />
+	</path>
+
+	<target name="compile">
+		<javac srcdir="${srcdir}" encoding="UTF-8" debug="off" includeantruntime="false"
+			verbose="${full-compile}">
+			<classpath refid="classpath.test" />
+		</javac>
+	</target>
+	<target name="all">
+		<antcall target="test" />
+		<antcall target="sendmail" />
+	</target>
+	<target name="test" depends="compile">
+		<testng outputdir="${testdir}" classpathref="classpath.test">
+			<xmlfileset dir="${srcdir}" includes="testng.xml" />
+		</testng>
+	</target>
+
+	<condition property="mailrunmode">
+		<istrue value="${mailrun}" />
+	</condition>
+	<target name="sendmail" if="mailrunmode">
+		<mail mailhost="${mailstmp}" user="${mailuser}" password="${mailpassword}"
+			subject="${mailtitle}" mailport="${mailport}" messagefile="${testreportdir}/${ReportName}.html"
+			messagemimetype="text/html" from="${mailfrom}" tolist="${maillist}"
+			messagefileinputencoding="UTF-8">
+			<attachments>
+				<fileset dir="${testreportdir}">
+					<include name="${ReportName}.html" />
+				</fileset>
+			</attachments>
+		</mail>
+	</target>
+</project>
