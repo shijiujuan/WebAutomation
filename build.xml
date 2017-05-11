@@ -14,13 +14,13 @@
 	<!-- 设置邮件是否发送 -->
 	<property name="mailrun" value="false" />
 	<!-- 邮件路径设置(将HTML发送出去) -->
-	<property name="mailstmp" value="mail.pansafe.com" />
-	<property name="mailuser" value="shijiujuan@pansafe.com" />
-	<property name="mailpassword" value="b8V78QB339" />
+	<property name="mailstmp" value="mail.***.com" />
+	<property name="mailuser" value="***@***.com" />
+	<property name="mailpassword" value="&&&&" />
 	<property name="mailport" value="25" />
-	<property name="mailfrom" value="shijiujuan@pansafe.com" />
-	<property name="mailto" value="shijiujuan@pansafe.com" />
-	<property name="maillist" value="shijiujuan@pansafe.com" />
+	<property name="mailfrom" value="***" />
+	<property name="mailto" value="***" />
+	<property name="maillist" value="****" />
 
 
 	<!-- 邮件名字 -->
