@@ -24,11 +24,11 @@ public class LoginPage {
 	 *            登录按钮xpath
 	 */
 	public static void login(BaseWebDrvier dr, String url, String xpath, String unameXpath, String uname,
-			String pwdXpath, String pwd, String loginBtnXpath) {
+			String pwdXpath, String pwd, String loginBtnXpath,String loginBtn) {
 		dr.get(url);
 		ImprovedWebDrvier.inputs(dr, xpath, unameXpath, uname);
 		ImprovedWebDrvier.inputs(dr, xpath, pwdXpath, pwd);
-		ImprovedWebDrvier.click(dr, loginBtnXpath);
+		ImprovedWebDrvier.click(dr, loginBtnXpath,loginBtn);
 	}
 
 	/**
@@ -40,9 +40,9 @@ public class LoginPage {
 	 *            用户名的xpath路径
 	 * @param uname
 	 *            用户名
-	 * @param pdrXpath
+	 * @param pwdXpath
 	 *            密码xpath路径
-	 * @param pdrValue
+	 * @param pwd
 	 *            密码
 	 * @param loginBtnXpath
 	 *            登录按钮xpath
@@ -50,12 +50,12 @@ public class LoginPage {
 	 *            第几个框架
 	 */
 	public static void loginFrame(BaseWebDrvier dr, String url, String xpath, String unameXpath, String uname,
-			String pdrXpath, String pdr, String loginBtnXpath, int frame) {
+			String pwdXpath, String pwd, String loginBtnXpath,String loginBtn, int frame) {
 		dr.get(url);
 		dr.switchTo().frame(frame);
 		ImprovedWebDrvier.inputs(dr, xpath, unameXpath, uname);
-		ImprovedWebDrvier.inputs(dr, xpath, pdrXpath, pdr);
-		ImprovedWebDrvier.click(dr, loginBtnXpath);
+		ImprovedWebDrvier.inputs(dr, xpath, pwdXpath, pwd);
+		ImprovedWebDrvier.click(dr, loginBtnXpath,loginBtn);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class LoginPage {
 	 *            输入验证码的间隔
 	 */
 	public static void loginVerify(BaseWebDrvier dr, String url, String xpath, String unameXpath, String uname,
-			String pdrXpath, String pdr, String loginBtnXpath, int seconds) {
+			String pdrXpath, String pdr, String loginBtnXpath,String loginBtn, int seconds) {
 		dr.get(url);
 		ImprovedWebDrvier.inputs(dr, xpath, unameXpath, uname);
 		ImprovedWebDrvier.inputs(dr, xpath, pdrXpath, pdr);
@@ -86,6 +86,6 @@ public class LoginPage {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		ImprovedWebDrvier.click(dr, loginBtnXpath);
+		ImprovedWebDrvier.click(dr, loginBtnXpath,loginBtn);
 	}
 }

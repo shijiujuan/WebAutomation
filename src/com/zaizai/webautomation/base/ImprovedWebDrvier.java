@@ -3,7 +3,6 @@ package com.zaizai.webautomation.base;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
 public class ImprovedWebDrvier {
@@ -62,8 +61,8 @@ public class ImprovedWebDrvier {
 	 *            读取配置文件中的key
 	 * @return
 	 */
-	public static void click(BaseWebDrvier dr, String xpath) {
-		dr.findElement(By.xpath(xpath)).click();
+	public static void click(BaseWebDrvier dr, String xpath,String value) {
+		dr.findElement(xpath,value).click();
 	}
 
 	/**
@@ -138,8 +137,8 @@ public class ImprovedWebDrvier {
 	 * @param xpath
 	 *            读取配置文件中的key
 	 */
-	public static void check(BaseWebDrvier dr, String xpath) {
-		click(dr, xpath);
+	public static void check(BaseWebDrvier dr, String xpath,String value) {
+		click(dr, xpath,value);
 	}
 
 	/**
@@ -152,9 +151,9 @@ public class ImprovedWebDrvier {
 	 * @param xpath2
 	 *            事件源节点的xpath
 	 */
-	public static void clickHidden(BaseWebDrvier dr, String xpath1, String xpath2) {
-		click(dr, xpath1);
-		click(dr, xpath2);
+	public static void clickHidden(BaseWebDrvier dr, String xpath1, String xpath2,String value1,String value2) {
+		click(dr, xpath1,value1);
+		click(dr, xpath2,value2);
 	}
 
 	/**
@@ -167,9 +166,9 @@ public class ImprovedWebDrvier {
 	 * @param xpath2
 	 *            读取配置文件中的key
 	 */
-	public static void getHiddenText(BaseWebDrvier dr, String xpath1, String xpath2, String value) {
-		click(dr, xpath1);
-		getText(dr, xpath2, value);
+	public static void getHiddenText(BaseWebDrvier dr, String xpath1, String xpath2, String value1,String value2) {
+		click(dr, xpath1,value1);
+		getText(dr, xpath2, value2);
 	}
 
 	/**
@@ -186,10 +185,10 @@ public class ImprovedWebDrvier {
 	 * @param attribute
 	 *            要获取目标节点的哪个属性
 	 */
-	public static String getHiddenAttribute(BaseWebDrvier dr, String xpath1, String xpath2, String value,
+	public static String getHiddenAttribute(BaseWebDrvier dr, String xpath1, String xpath2, String value1,String value2,
 			String attribute) {
-		click(dr, xpath1);
-		return getAttribute(dr, xpath2, value, attribute);
+		click(dr, xpath1,value1);
+		return getAttribute(dr, xpath2, value2, attribute);
 	}
 
 	/**
